@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="boraA">#BFC8EA</color>
+    <color name="boraA">#B0A0FC</color>
+    <color name="skyBlue">#668BC4</color>
 </resources>

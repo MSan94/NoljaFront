@@ -10,8 +10,8 @@ object UserRemoteDataSource {
     private val retrofit = RetrofitObject.retrofitService
     val userApiService : UserService = retrofit.create(UserService::class.java)
 
-    fun getMyInfo(userName : String , userPassword: String, callback : UserRepository.getDataCallback<UserModel>) {
-        userApiService.getMyInfo(UserModel()).enqueue(object : Callback<UserModel> {
+    fun getMyInfo(userIdx : Integer, callback : UserRepository.getDataCallback<UserModel>) {
+        userApiService.getMyInfo(userIdx).enqueue(object : Callback<UserModel> {
             override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
                 if (response.isSuccessful) {
                     callback.onSuccess(response.body())

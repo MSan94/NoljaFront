@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
  * 유저 엔티티
  */
 data class UserModel(
-    @field:SerializedName("uno")
-    val uno: Long? = null,
+    @field:SerializedName("userIdx")
+    val userIdx: Long? = null,
     @field:SerializedName("userName")
     val userName: String? = null,
     @field:SerializedName("userPassworld")

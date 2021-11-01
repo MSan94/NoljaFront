@@ -10,5 +10,5 @@ import retrofit2.http.Query
  */
 interface UserService {
     @GET("/")
-    fun getMyInfo(@Query("ServiceKey") user : UserModel) : Call<UserModel>
+    fun getMyInfo(userIdx : Integer) : Call<UserModel>
 }

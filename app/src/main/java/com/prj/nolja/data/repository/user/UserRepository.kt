@@ -6,12 +6,18 @@ import com.prj.nolja.data.repository.retrofit.RetrofitObject
 object UserRepository {
     private val retrofitDataSource = UserRemoteDataSource
 
-    fun getMyInfo(userName : String, userPassword : String, callback:getDataCallback<UserModel>){
-        retrofitDataSource.getMyInfo()
+    /**
+     * 회원정보 가져오기
+     */
+    fun getMyInfo(userIdx : Integer, callback:getDataCallback<UserModel>){
+        retrofitDataSource.getMyInfo(userIdx, callback)
     }
 
+    /**
+     * 데이터 콜백
+     */
     interface getDataCallback<T>{
         fun onSuccess(data : T?)
         fun onFailure(throwable: Throwable)
     }
-}//https://0391kjy.tistory.com/14
+}
