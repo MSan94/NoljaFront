@@ -13,8 +13,7 @@ import java.security.MessageDigest
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_login
-    override val viewModel : LoginViewModel by viewModel()
-
+    override val viewModel : LoginViewModel = LoginViewModel()
     override fun initStartView() {
     }
 
@@ -23,7 +22,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun initAfterBinding() {
 //        val validPassword = BCrypt.checkpw("myPassword", bCryptPassword)
-
 //        Toast.makeText(this,"$validPassword",Toast.LENGTH_SHORT).show()
         btn_Login.setOnClickListener {
             val bCrypyPassword = getDigestSalt(editText_Pw.text.toString())
