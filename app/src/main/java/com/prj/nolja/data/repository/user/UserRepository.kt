@@ -8,11 +8,19 @@ object UserRepository {
     private val retrofitDataSource = UserRemoteDataSource
 
     /**
-     * 회원정보 가져오기
+     * 로그인 체크
      */
     fun selectUser(id:String, pw:String, callback:getDataCallback<User>){
         retrofitDataSource.selectUser(id, pw, callback)
     }
+
+    /**
+     * 아이디 중복 체크
+     */
+    fun validUserId(id:String){
+
+    }
+
 
     /**
      * 데이터 콜백

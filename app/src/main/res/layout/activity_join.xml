@@ -1,6 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.prj.nolja.view.viewmodel.JoinViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_top"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraint_bottom"
+            app:layout_constraintDimensionRatio="7:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="회원가입"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_top">
+
+            <EditText
+                android:id="@+id/editText_Id"
+                android:layout_width="260sp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:hint="ID"
+                app:layout_constraintEnd_toStartOf="@+id/btn_IdCheck"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_IdCheck"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:text="ID 체크"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editText_Id"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_IdCheck_Result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/btn_IdCheck"
+                app:layout_constraintStart_toStartOf="@+id/editText_Id"
+                app:layout_constraintTop_toBottomOf="@id/editText_Id" />
+
+            <EditText
+                android:id="@+id/editText_Pw"
+                android:layout_width="260sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="PW"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_IdCheck_Result" />
+
+            <EditText
+                android:id="@+id/editText_PwCheck"
+                android:layout_width="260sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="PW CHECK"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Pw" />
+            <TextView
+                android:layout_margin="10dp"
+                android:visibility="gone"
+                android:id="@+id/textView_PwCheck_Result"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_PwCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/editText_Nick"
+                android:layout_width="260sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="NICKNAME"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_PwCheck_Result" />
+
+            <EditText
+                android:id="@+id/editText_Email"
+                android:layout_width="260sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="EMAIL"
+                app:layout_constraintEnd_toStartOf="@+id/btn_EmailCheck"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Nick" />
+
+            <EditText
+                android:visibility="gone"
+                android:hint="인증코드"
+                android:id="@+id/editText_Email_Code"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Email"
+                android:layout_margin="10dp"
+                android:layout_width="100sp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_EmailCheck"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:text="인증코드 전송"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editText_Email"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Nick" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:background="@drawable/custom_button_login"
+                android:id="@+id/btn_Register"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Email_Code"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:text="등록"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Back"
+                android:background="@drawable/custom_button_login"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_Register"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:text="돌아가기"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

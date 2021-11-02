@@ -9,23 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.prj.nolja.R
-import com.prj.nolja.base.BaseActivity
 import com.prj.nolja.data.model.UserModel
 import com.prj.nolja.databinding.ActivityLoginBinding
 import com.prj.nolja.view.viewmodel.LoginViewModel
-import kotlinx.android.synthetic.main.activity_login.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.mindrot.jbcrypt.BCrypt
-import java.security.MessageDigest
-import java.util.Optional.of
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
     private var resultText : MutableLiveData<String> = MutableLiveData()
     private val viewModel : LoginViewModel by viewModels()
-    private var user : UserModel = UserModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         viewModel.resultText.observe(this, Observer {
-            Log.d("MainLog","들옴")
             when(it){
                 "success" -> {
                     Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show()
