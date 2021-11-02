@@ -1,5 +1,6 @@
 package com.prj.nolja.data.repository.user
 
+import com.prj.nolja.data.model.User
 import com.prj.nolja.data.model.UserModel
 import com.prj.nolja.data.repository.retrofit.RetrofitObject
 
@@ -9,8 +10,8 @@ object UserRepository {
     /**
      * 회원정보 가져오기
      */
-    fun getMyInfo(userIdx : Integer, callback:getDataCallback<UserModel>){
-        retrofitDataSource.getMyInfo(userIdx, callback)
+    fun selectUser(id:String, pw:String, callback:getDataCallback<User>){
+        retrofitDataSource.selectUser(id, pw, callback)
     }
 
     /**

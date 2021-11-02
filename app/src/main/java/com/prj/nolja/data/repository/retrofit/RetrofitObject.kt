@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
  * 레트로핏 오브젝트
  */
 object RetrofitObject {
-    private val baseUrl = ""
+    private val baseUrl = "http://10.0.2.2:8002/"
 
     private fun createOkHttpClient() : OkHttpClient{
         val interceptor = HttpLoggingInterceptor()

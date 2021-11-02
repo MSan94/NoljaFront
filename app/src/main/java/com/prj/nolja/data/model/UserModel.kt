@@ -16,4 +16,8 @@ data class UserModel(
     val userNick: String? = null,
     @field:SerializedName("userEmail")
     val userEmail: String? = null
-)
+){
+    constructor(userIdx:Long, userName:String, userNick:String, userEmail:String) : this() {
+
+    }
+}
