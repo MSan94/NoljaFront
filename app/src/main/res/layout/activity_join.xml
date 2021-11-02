@@ -7,6 +7,7 @@
         <variable
             name="viewmodel"
             type="com.prj.nolja.view.viewmodel.JoinViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,6 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:text="ID 체크"
+                android:onClick="@{() -> viewmodel.selectId(editTextId.getText().toString())}"
                 android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/editText_Id"
@@ -78,6 +80,7 @@
 
             <EditText
                 android:id="@+id/editText_Pw"
+                android:inputType="textPassword"
                 android:layout_width="260sp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -88,6 +91,7 @@
             <EditText
                 android:id="@+id/editText_PwCheck"
                 android:layout_width="260sp"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="PW CHECK"
@@ -123,13 +127,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText_Nick" />
 
             <EditText
-                android:visibility="gone"
+                android:visibility="@{viewmodel.emailCheck ? View.VISIBLE : View.GONE}"
                 android:hint="인증코드"
                 android:id="@+id/editText_Email_Code"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView_Timeout"
                 app:layout_constraintTop_toBottomOf="@+id/editText_Email"
                 android:layout_margin="10dp"
                 android:layout_width="100sp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:visibility="@{viewmodel.emailCheck ? View.VISIBLE : View.GONE}"
+                android:text="남은시간 02 : 59"
+                app:layout_constraintStart_toEndOf="@+id/editText_Email_Code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Email"
+                app:layout_constraintBottom_toBottomOf="@id/editText_Email_Code"
+                android:id="@+id/textView_Timeout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -138,6 +153,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:text="인증코드 전송"
+                android:onClick="@{() -> viewmodel.sendMail()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/editText_Email"
                 app:layout_constraintTop_toBottomOf="@+id/editText_Nick" />
@@ -151,6 +167,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/white"
                 android:text="등록"
+                android:onClick="@{() -> viewmodel.regitUser(editTextId.getText().toString(),editTextPw.getText().toString(),editTextPwCheck.getText().toString(),editTextNick.getText().toString(),editTextEmail.getText().toString())}"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"/>
             <androidx.appcompat.widget.AppCompatButton

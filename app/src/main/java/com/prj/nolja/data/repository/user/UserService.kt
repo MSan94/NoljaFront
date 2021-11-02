@@ -1,5 +1,6 @@
 package com.prj.nolja.data.repository.user
 
+import com.prj.nolja.data.model.CommonModel
 import com.prj.nolja.data.model.User
 import com.prj.nolja.data.model.UserModel
 import retrofit2.Call
@@ -12,10 +13,22 @@ interface UserService {
     /** 로그인 **/
     @FormUrlEncoded
     @POST("/select/user")
-    fun selectUser(@Field("id") id:String, @Field("pw") pw:String ) : Call<User>
+    fun selectUser(@Field("id") id: String, @Field("pw") pw: String): Call<User>
 
     /** 아이디 중복 체크 **/
     @FormUrlEncoded
     @POST("/select/id")
-    fun selectId(@Field("id") id:String) : Int
+    fun validUserId(@Field("id") id: String): Call<CommonModel>
+
+    /** 회원가입 **/
+    @FormUrlEncoded
+    @POST("/insert/user")
+    fun insertUser(
+        @Field("id") id: String,
+        @Field("pw") pw: String,
+        @Field("email") email: String,
+        @Field("nick") inick: String
+    ): Call<CommonModel>
+
+
 }

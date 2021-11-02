@@ -14,13 +14,16 @@ import com.prj.nolja.base.BaseViewModel
 import com.prj.nolja.data.model.User
 import com.prj.nolja.data.model.UserModel
 import com.prj.nolja.data.repository.user.UserRepository
+import org.mindrot.jbcrypt.BCrypt
+import java.security.SecureRandom
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val valid = MutableLiveData<Boolean>()
     val resultText = MutableLiveData<String>()
 
     fun selectUser(id:String, pw:String){
-        UserRepository.selectUser(id,pw, object : UserRepository.getDataCallback<User>{
+        val userPw = JoinViewModel.getDigestSalt(pw)
+        UserRepository.selectUser(id,userPw, object : UserRepository.getDataCallback<User>{
             override fun onSuccess(data: User?) {
                 data?.let {
                     valid.value = !(it.result).equals("fail")
@@ -35,6 +38,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
 
-
+    companion object {
+        fun getDigestSalt(password: String): String {
+            return BCrypt.hashpw(password, BCrypt.gensalt(10))
+        }
+    }
 
 }

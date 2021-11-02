@@ -13,6 +13,7 @@ import com.prj.nolja.R
 import com.prj.nolja.data.model.UserModel
 import com.prj.nolja.databinding.ActivityLoginBinding
 import com.prj.nolja.view.viewmodel.LoginViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 import org.mindrot.jbcrypt.BCrypt
 
 class LoginActivity : AppCompatActivity() {
@@ -32,12 +33,13 @@ class LoginActivity : AppCompatActivity() {
             when(it){
                 "success" -> {
                     Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show()
-                    moveActivity("1")
                 }
                 else -> {Toast.makeText(this,"실패",Toast.LENGTH_SHORT).show()}
             }
         })
-        
+        btn_Join.setOnClickListener {
+            moveActivity("1")
+        }
     }
 
     fun moveActivity(type : String){
