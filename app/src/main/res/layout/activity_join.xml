@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.prj.nolja.view.viewmodel.JoinViewModel" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +55,8 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:hint="ID"
+                android:lines="1"
+                android:singleLine="true"
                 app:layout_constraintEnd_toStartOf="@+id/btn_IdCheck"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,9 +65,9 @@
                 android:id="@+id/btn_IdCheck"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:text="ID 체크"
-                android:onClick="@{() -> viewmodel.selectId(editTextId.getText().toString())}"
                 android:layout_margin="10dp"
+                android:onClick="@{() -> viewmodel.selectId(editTextId.getText().toString())}"
+                android:text="ID 체크"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/editText_Id"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -73,6 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:lines="1"
+                android:singleLine="true"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/btn_IdCheck"
                 app:layout_constraintStart_toStartOf="@+id/editText_Id"
@@ -80,32 +86,37 @@
 
             <EditText
                 android:id="@+id/editText_Pw"
-                android:inputType="textPassword"
                 android:layout_width="260sp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="PW"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:singleLine="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_IdCheck_Result" />
 
             <EditText
                 android:id="@+id/editText_PwCheck"
                 android:layout_width="260sp"
-                android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="PW CHECK"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:singleLine="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText_Pw" />
+
             <TextView
+                android:id="@+id/textView_PwCheck_Result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:visibility="gone"
-                android:id="@+id/textView_PwCheck_Result"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_PwCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_PwCheck" />
 
             <EditText
                 android:id="@+id/editText_Nick"
@@ -113,6 +124,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="NICKNAME"
+                android:lines="1"
+                android:singleLine="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_PwCheck_Result" />
 
@@ -122,65 +135,71 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="EMAIL"
+                android:lines="1"
+                android:singleLine="true"
                 app:layout_constraintEnd_toStartOf="@+id/btn_EmailCheck"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText_Nick" />
 
             <EditText
-                android:visibility="@{viewmodel.emailCheck ? View.VISIBLE : View.GONE}"
-                android:hint="인증코드"
                 android:id="@+id/editText_Email_Code"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_Timeout"
-                app:layout_constraintTop_toBottomOf="@+id/editText_Email"
-                android:layout_margin="10dp"
                 android:layout_width="100sp"
-                android:layout_height="wrap_content"/>
-            <TextView
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="인증코드"
+                android:lines="1"
+                android:singleLine="true"
                 android:visibility="@{viewmodel.emailCheck ? View.VISIBLE : View.GONE}"
-                android:text="남은시간 02 : 59"
-                app:layout_constraintStart_toEndOf="@+id/editText_Email_Code"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_Email"
-                app:layout_constraintBottom_toBottomOf="@id/editText_Email_Code"
+                app:layout_constraintEnd_toStartOf="@+id/textView_Timeout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Email" />
+
+            <TextView
                 android:id="@+id/textView_Timeout"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.mailTime}"
+                android:visibility="@{viewmodel.emailCheck ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/editText_Email_Code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editText_Email_Code"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Email" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_EmailCheck"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
+                android:onClick="@{() -> viewmodel.sendMail(editTextEmail.getText().toString())}"
                 android:text="인증코드 전송"
-                android:onClick="@{() -> viewmodel.sendMail()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/editText_Email"
                 app:layout_constraintTop_toBottomOf="@+id/editText_Nick" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:background="@drawable/custom_button_login"
                 android:id="@+id/btn_Register"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText_Email_Code"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
-                android:text="등록"
-                android:onClick="@{() -> viewmodel.regitUser(editTextId.getText().toString(),editTextPw.getText().toString(),editTextPwCheck.getText().toString(),editTextNick.getText().toString(),editTextEmail.getText().toString())}"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_button_login"
+                android:onClick="@{() -> viewmodel.regitUser(editTextId.getText().toString(),editTextPw.getText().toString(),editTextPwCheck.getText().toString(),editTextNick.getText().toString(),editTextEmail.getText().toString(),editTextEmailCode.getText().toString())}"
+                android:text="등록"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_Email_Code" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_Back"
-                android:background="@drawable/custom_button_login"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_Register"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
-                android:text="돌아가기"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_button_login"
+                android:text="돌아가기"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_Register" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

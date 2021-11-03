@@ -53,4 +53,17 @@ object UserRemoteDataSource {
         })
     }
 
+    fun requestMail(receiverMail : String , callback: UserRepository.getDataCallback<CommonModel>){
+        userApiService.requestMail(receiverMail).enqueue(object : Callback<CommonModel>{
+            override fun onResponse(call: Call<CommonModel>, response: Response<CommonModel>) {
+                if(response.isSuccessful){
+                    callback.onSuccess(response.body())
+                }
+            }
+            override fun onFailure(call: Call<CommonModel>, t: Throwable) {
+                callback.onFailure(t)
+            }
+        })
+    }
+
 }

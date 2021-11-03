@@ -22,8 +22,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val resultText = MutableLiveData<String>()
 
     fun selectUser(id:String, pw:String){
-        val userPw = JoinViewModel.getDigestSalt(pw)
-        UserRepository.selectUser(id,userPw, object : UserRepository.getDataCallback<User>{
+        UserRepository.selectUser(id,pw, object : UserRepository.getDataCallback<User>{
             override fun onSuccess(data: User?) {
                 data?.let {
                     valid.value = !(it.result).equals("fail")

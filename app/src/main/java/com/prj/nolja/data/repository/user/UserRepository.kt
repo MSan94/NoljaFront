@@ -27,6 +27,11 @@ object UserRepository {
         retrofitDataSource.insertUser(id,pw,email,nick,callback)
     }
 
+    /** 메일 전송 **/
+    fun requestMail(receiverMail : String , callback: getDataCallback<CommonModel>){
+        retrofitDataSource.requestMail(receiverMail,callback)
+    }
+
     /**
      * 데이터 콜백
      */

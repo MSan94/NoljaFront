@@ -30,5 +30,10 @@ interface UserService {
         @Field("nick") inick: String
     ): Call<CommonModel>
 
-
+    /** 메일 전송 **/
+    @FormUrlEncoded
+    @POST("/requestMail")
+    fun requestMail(
+        @Field("receiverMail") receiverMail : String
+    ): Call<CommonModel>
 }
