@@ -44,6 +44,7 @@ class JoinViewModel() : ViewModel() {
     val mailString : LiveData<String>
         get() = _mailString
 
+    /** 아이디 중복 체크 **/
     fun selectId(id: String) {
         if (id.length < 5) {
             handleError("",Throwable("아이디는 5글자 이상 작성해주세요."))
@@ -61,6 +62,7 @@ class JoinViewModel() : ViewModel() {
         }
     }
 
+    /** 인증메일 요청 **/
     fun sendMail(receiverMail:String) {
         _emailCheck.postValue(true)
         requestMail(receiverMail)
@@ -87,7 +89,7 @@ class JoinViewModel() : ViewModel() {
 
         })
     }
-
+    /** 회원가입 **/
     fun regitUser(id:String, pw:String, pwCheck:String, nickName:String, email:String, mailCode:String){
         if(_idCheck.value == 1){
             handleError("", Throwable("아이디를 확인해주세요."))
@@ -130,16 +132,10 @@ class JoinViewModel() : ViewModel() {
         })
     }
 
+    /** 이벤트 처리 Toast 전용 핸들러 **/
     private fun handleError(message:String,exception: Throwable) {
         val message = exception.message ?: message
         _err.value = Event(message)
     }
 
-
-    /** 서버에서 처리.. 서버로 전송할때는 어떻게 암호화 하는지 확인해보자.. **/
-/*    companion object {
-        fun getDigestSalt(password: String): String {
-            return BCrypt.hashpw(password, BCrypt.gensalt(10))
-        }
-    }*/
 }

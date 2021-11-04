@@ -2,7 +2,6 @@ package com.prj.nolja.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,16 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.prj.nolja.R
-import com.prj.nolja.data.model.UserModel
 import com.prj.nolja.databinding.ActivityLoginBinding
 import com.prj.nolja.view.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
-import org.mindrot.jbcrypt.BCrypt
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var binding : ActivityLoginBinding
-    private var resultText : MutableLiveData<String> = MutableLiveData()
-    private val viewModel : LoginViewModel by viewModels()
+    lateinit var binding: ActivityLoginBinding
+    private var resultText: MutableLiveData<String> = MutableLiveData()
+    private val viewModel: LoginViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,52 +25,43 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
-
+        eventTask()
+        /** 로그인 유무 옵저버 **/
         viewModel.resultText.observe(this, Observer {
-            when(it){
+            when (it) {
                 "success" -> {
-                    Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "로그인 하였습니다.", Toast.LENGTH_SHORT).show()
+                    moveActivity("2")
                 }
-                else -> {Toast.makeText(this,"실패",Toast.LENGTH_SHORT).show()}
+                else -> {
+                    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+                }
             }
         })
+    }
+
+    /** 이벤트 모음 **/
+    fun eventTask() {
         btn_Join.setOnClickListener {
             moveActivity("1")
         }
     }
 
-    fun moveActivity(type : String){
-        when(type){
+    /** 액티비티 전환 **/
+    fun moveActivity(type: String) {
+        when (type) {
             "1" -> {
                 val intent = Intent(this, JoinActivity::class.java)
                 startActivity(intent)
             }
-            else -> {
-
+            "2" -> {
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
             }
         }
     }
-    fun observerViewModel(){
-        resultText.observe(this, Observer {
-            
-        })
-    }
-
-
-    companion object {
-        fun getDigestSalt(password: String): String {
-            return BCrypt.hashpw(password, BCrypt.gensalt(10))
-        }
-
-    }
-
 }
 
-/*val validPassword = BCrypt.checkpw("myPassword", bCryptPassword)
-//        Toast.makeText(this,"$validPassword",Toast.LENGTH_SHORT).show()
-btn_Login.setOnClickListener {
-    val bCrypyPassword = LoginActivity.getDigestSalt(editText_Pw.text.toString())
-    Toast.makeText(this, "$bCrypyPassword", Toast.LENGTH_SHORT).show()
-}*/
 
 

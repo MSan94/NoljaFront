@@ -13,7 +13,6 @@ import com.prj.nolja.databinding.ActivityJoinBinding
 import com.prj.nolja.util.EventObserver
 import com.prj.nolja.view.viewmodel.JoinViewModel
 import kotlinx.android.synthetic.main.activity_join.*
-import org.mindrot.jbcrypt.BCrypt
 
 class JoinActivity : AppCompatActivity() {
     lateinit var binding : ActivityJoinBinding
@@ -24,7 +23,8 @@ class JoinActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_join)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
-
+        
+        /** 아이디 가능 여부 옵저버 **/
         viewModel.idCheck.observe(this, Observer {
             when(it){
                 0 -> {
@@ -37,7 +37,8 @@ class JoinActivity : AppCompatActivity() {
                 }
             }
         })
-
+        
+        /** 회원가입 여부 옵저버 **/
         viewModel.joinResult.observe(this, Observer {
             when(it){
                 1 -> {
@@ -49,14 +50,16 @@ class JoinActivity : AppCompatActivity() {
                 }
             }
         })
-
+        
+        /** 에러전용 옵저버 **/
         viewModel.err.observe(this, EventObserver { message ->
             Toast.makeText(this,"$message",Toast.LENGTH_SHORT).show()
         })
 
     }
-
-    fun moveActivity(type:String){
+    
+    /** 액티비티 전환 **/
+    private fun moveActivity(type:String){
         when(type){
             "1" -> {
                 val intent = Intent(this,LoginActivity::class.java)
