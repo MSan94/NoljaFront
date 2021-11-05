@@ -20,7 +20,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="@color/peach"
                 android:minHeight="?android:attr/actionBarSize">
 
@@ -46,6 +46,7 @@
                     android:layout_height="match_parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout

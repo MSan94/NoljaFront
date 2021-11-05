@@ -38,6 +38,7 @@ android {
 
     buildFeatures{
         dataBinding true
+        viewBinding true
     }
 
 }
@@ -78,4 +79,6 @@ dependencies {
 
     // jBCrypt
     implementation group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4.1'
+
+
 }
