@@ -54,7 +54,6 @@
                         android:id="@+id/linearLayout_button1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/custom_selector"
                         android:gravity="center"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,9 +76,8 @@
 
                     <LinearLayout
                         android:id="@+id/linearLayout_button2"
-                        android:layout_width="100dp"
-                        android:layout_height="49dp"
-                        android:background="@drawable/custom_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +103,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="@drawable/custom_selector"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

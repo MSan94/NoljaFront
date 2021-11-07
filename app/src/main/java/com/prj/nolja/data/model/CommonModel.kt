@@ -7,4 +7,5 @@ class CommonModel {
     val result : Int = -1
     @field:SerializedName("mailString")
     val mailString : String = ""
+
 }

@@ -13,6 +13,7 @@ object UserRemoteDataSource {
     private val retrofit = RetrofitObject.retrofitService
     val userApiService: UserService = retrofit.create(UserService::class.java)
 
+    /** 로그인 **/
     fun selectUser(id: String, pw: String, callback: UserRepository.getDataCallback<User>) {
         userApiService.selectUser(id, pw).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
@@ -27,6 +28,7 @@ object UserRemoteDataSource {
         })
     }
 
+    /** 아이디 체크 **/
     fun validUserId(id: String, callback: UserRepository.getDataCallback<CommonModel>) {
         userApiService.validUserId(id).enqueue(object : Callback<CommonModel> {
             override fun onResponse(call: Call<CommonModel>, response: Response<CommonModel>) {
@@ -40,6 +42,7 @@ object UserRemoteDataSource {
         })
     }
 
+    /** 회원가입 **/
     fun insertUser(id:String, pw:String, email:String, nick:String, callback:UserRepository.getDataCallback<CommonModel>){
         userApiService.insertUser(id,pw,email,nick).enqueue(object : Callback<CommonModel>{
             override fun onResponse(call: Call<CommonModel>, response: Response<CommonModel>) {
@@ -53,6 +56,7 @@ object UserRemoteDataSource {
         })
     }
 
+    /** 이메일 요청 **/
     fun requestMail(receiverMail : String , callback: UserRepository.getDataCallback<CommonModel>){
         userApiService.requestMail(receiverMail).enqueue(object : Callback<CommonModel>{
             override fun onResponse(call: Call<CommonModel>, response: Response<CommonModel>) {

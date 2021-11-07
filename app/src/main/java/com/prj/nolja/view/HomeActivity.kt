@@ -43,19 +43,22 @@ class HomeActivity : AppCompatActivity() {
         }
 
         linearLayout_button1.setOnClickListener {
-            linearLayout_button1.setBackgroundColor(R.color.peach)
+            Log.d("TestApp","1")
+            linearLayout_button1.setBackgroundColor(R.color.black)
             linearLayout_button2.setBackgroundColor(R.color.white)
             linearLayout_button3.setBackgroundColor(R.color.white)
         }
         linearLayout_button2.setOnClickListener {
+            Log.d("TestApp","2")
             linearLayout_button1.setBackgroundColor(R.color.white)
-            linearLayout_button2.setBackgroundColor(R.color.peach)
+            linearLayout_button2.setBackgroundColor(R.color.black)
             linearLayout_button3.setBackgroundColor(R.color.white)
         }
         linearLayout_button3.setOnClickListener {
+            Log.d("TestApp","3")
             linearLayout_button1.setBackgroundColor(R.color.white)
             linearLayout_button2.setBackgroundColor(R.color.white)
-            linearLayout_button3.setBackgroundColor(R.color.peach)
+            linearLayout_button3.setBackgroundColor(R.color.black)
         }
 
     }

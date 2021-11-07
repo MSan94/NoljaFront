@@ -16,7 +16,14 @@ import android.view.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import com.prj.nolja.MyApplication
+import com.prj.nolja.data.model.BoardModel
 import com.prj.nolja.databinding.DialogWriteBinding
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 
 class WriteDialog : DialogFragment() {
@@ -29,6 +36,13 @@ class WriteDialog : DialogFragment() {
         }
         binding.btnClose.setOnClickListener {
             dismiss()
+        }
+        binding.btnRegister.setOnClickListener {
+            if(destfile != null) {
+                sendData(destfile)
+            }else{
+                sendData(null)
+            }
         }
         return binding.root
     }
@@ -88,10 +102,35 @@ class WriteDialog : DialogFragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK){
             if(requestCode == 200){
-                var selectImg : Uri = data!!.data
-                binding.imageViewImg.setImageURI(selectImg)
+                /*var selectImg : Uri = data!!.data
+                binding.imageViewImg.setImageURI(selectImg)*/
+                val uri : Uri = data!!.data
+                binding.imageViewImg.setImageURI(uri)
+                val imagePath : String = uri.path
+                destfile = File(imagePath)
 
             }
         }
+    }
+
+    fun sendData(destfile : File?){
+        val requestBmp: RequestBody
+        val bmp : MultipartBody.Part?
+        if(destfile != null) {
+            requestBmp = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), destfile)
+            bmp = MultipartBody.Part.createFormData("imgfile",destfile?.path,requestBmp)
+            Log.d("TestApp2" , "${bmp.toString()}")
+        }
+        val writer = MyApplication.prefs.getString("ID","noId")
+        val subject = binding.editTextWrite.text.toString()
+        val type = "M"
+
+        Log.d("TestApp2" , "$writer $subject $type")
+        //TODO RETROFIT INSERT
+    }
+
+
+    companion object{
+        var destfile : File? = null
     }
 }

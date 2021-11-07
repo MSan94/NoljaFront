@@ -16,7 +16,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     /** 로그인정보 유무 조회 **/
     init{
         val prefsId = MyApplication.prefs.getString("ID","noId")
-        MyApplication.prefs.deleteString("ID")
+        /*MyApplication.prefs.deleteString("ID")*/
         if(prefsId != "noId"){
             resultText.postValue("success")
         }
