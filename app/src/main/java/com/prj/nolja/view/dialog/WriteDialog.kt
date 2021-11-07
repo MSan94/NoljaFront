@@ -27,6 +27,9 @@ class WriteDialog : DialogFragment() {
         binding.btnFile.setOnClickListener {
             onPermission()
         }
+        binding.btnClose.setOnClickListener {
+            dismiss()
+        }
         return binding.root
     }
 

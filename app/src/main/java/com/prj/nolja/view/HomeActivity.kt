@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.prj.nolja.R
 import com.prj.nolja.databinding.ActivityHomeBinding
+import com.prj.nolja.view.dialog.WriteDialog
 import com.prj.nolja.view.fragment.CommentFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -27,14 +28,40 @@ class HomeActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         mDrawerToggle = ActionBarDrawerToggle(this,drawer_layout,toolbar,R.string.open,R.string.close)
         mDrawerToggle!!.syncState()
-
+        init()
         eventTask()
         setFragment(CommentFragment())
 
     }
 
+    @SuppressLint("ResourceAsColor")
+    private fun init(){
+
+        btn_write.setOnClickListener {
+            var dialog = WriteDialog()
+            dialog.show(supportFragmentManager,"")
+        }
+
+        linearLayout_button1.setOnClickListener {
+            linearLayout_button1.setBackgroundColor(R.color.peach)
+            linearLayout_button2.setBackgroundColor(R.color.white)
+            linearLayout_button3.setBackgroundColor(R.color.white)
+        }
+        linearLayout_button2.setOnClickListener {
+            linearLayout_button1.setBackgroundColor(R.color.white)
+            linearLayout_button2.setBackgroundColor(R.color.peach)
+            linearLayout_button3.setBackgroundColor(R.color.white)
+        }
+        linearLayout_button3.setOnClickListener {
+            linearLayout_button1.setBackgroundColor(R.color.white)
+            linearLayout_button2.setBackgroundColor(R.color.white)
+            linearLayout_button3.setBackgroundColor(R.color.peach)
+        }
+
+    }
+
     /** 이벤트 모음 **/
-    fun eventTask(){
+    private fun eventTask(){
         textView_Menu1.setOnClickListener {
             setFragment(CommentFragment())
         }
