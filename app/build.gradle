@@ -76,11 +76,20 @@ dependencies {
     def lifecycle_version = "2.3.0"
 
     // ViewModel - 라이프 사이클
+    // LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.activity:activity-ktx:1.1.0"
 
     // jBCrypt
     implementation group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4.1'
 
+    //Data Binding
+    kapt "com.android.databinding:compiler:4.0.1"
 
+    // Lifecycle components
+    def archLifecycleVersion = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
 }
